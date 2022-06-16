@@ -8,6 +8,14 @@ function stripProduct(product: Products) {
   };
 }
 
+async function fetchJson(url: string) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`request failed: ${response.status}`);
+  }
+  const product = await response.json();
+}
+
 export async function getProduct(id: string) {
   const response = await fetch(`http://localhost:1337/products/${id}`);
   if (!response.ok) {
